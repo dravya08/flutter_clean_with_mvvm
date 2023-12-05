@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../presentation/theme_manager.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp._internal();
 
@@ -9,6 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      theme: getApplicationTheme(),
+    );
   }
 }
