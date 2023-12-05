@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'color_manager.dart';
+import 'font_manager.dart';
+import 'style_manager.dart';
 import 'value_manager.dart';
 
 ThemeData getApplicationTheme() {
@@ -13,6 +15,13 @@ ThemeData getApplicationTheme() {
         shadowColor: ColorManager.grey,
         elevation: AppSize.s4),
     // App bar theme
+    appBarTheme: AppBarTheme(
+        centerTitle: true,
+        color: ColorManager.primary,
+        elevation: AppSize.s4,
+        shadowColor: ColorManager.primaryOpacity70,
+        titleTextStyle:
+            getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16)),
     colorScheme: ColorScheme(
       primary: ColorManager.primary,
       onPrimary: ColorManager.primaryOpacity70,
