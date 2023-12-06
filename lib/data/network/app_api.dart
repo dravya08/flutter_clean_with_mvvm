@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
+import '../../app/constant.dart';
 import '../responses.dart';
-import 'constant.dart';
 
 part 'app_api.g.dart';
 
