@@ -70,11 +70,9 @@ class OnBoardingViewModel extends BaseViewModel
   }
 
   @override
-  // TODO: implement inputSliderViewObject
   Sink get inputSliderViewObject => _controller.sink;
 
   @override
-  // TODO: implement outputSliderViewObject
   Stream<SliderViewObject> get outputSliderViewObject =>
       _controller.stream.map((sliderObject) => sliderObject);
 }
