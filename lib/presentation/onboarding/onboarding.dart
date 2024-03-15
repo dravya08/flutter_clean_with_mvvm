@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_clean_with_mvvm/presentation/onboarding/onboarding_viewmodel.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../domain/model.dart';
+import '../../domain/model/model.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
 import '../resources/route_manager.dart';

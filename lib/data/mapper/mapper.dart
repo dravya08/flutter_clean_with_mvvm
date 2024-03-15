@@ -1,6 +1,6 @@
 import 'package:flutter_clean_with_mvvm/app/extension.dart';
 
-import '../../domain/model.dart';
+import '../../domain/model/model.dart';
 import '../responses/responses.dart';
 
 const EMPTY = "";

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_clean_with_mvvm/presentation/base/baseviewmodel.dart';
 
-import '../../domain/model.dart';
+import '../../domain/model/model.dart';
 import '../resources/assets_manager.dart';
 import '../resources/strings_manager.dart';
 

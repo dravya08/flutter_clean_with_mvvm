@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_clean_with_mvvm/data/mapper/mapper.dart';
 
-import '../../domain/model.dart';
-import '../../domain/repository.dart';
+import '../../domain/model/model.dart';
+import '../../domain/repository/repository.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/error_handler.dart';
 import '../network/failure.dart';
