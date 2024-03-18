@@ -44,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
   Widget _getContentWidget() {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: AppPadding.p100),
+        padding: const EdgeInsets.only(top: AppPadding.p100),
         color: ColorManager.white,
         child: SingleChildScrollView(
           child: Form(
@@ -52,8 +52,8 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               children: [
                 SvgPicture.asset(ImageAssets.loginIc),
-                SizedBox(height: AppSize.s28),
-                Padding(padding: EdgeInsets.only(
+                const SizedBox(height: AppSize.s28),
+                Padding(padding: const EdgeInsets.only(
                     left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsUserNameValid,
@@ -71,8 +71,8 @@ class _LoginViewState extends State<LoginView> {
                       );
                     },
                   ),),
-                SizedBox(height: AppSize.s28),
-                Padding(padding: EdgeInsets.only(
+                const SizedBox(height: AppSize.s28),
+                Padding(padding: const EdgeInsets.only(
                     left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsPasswordValid,
@@ -89,13 +89,24 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       );
                     },
-                  ),)
+                  ),),
+                const SizedBox(height: AppSize.s28),
+                Padding(padding: const EdgeInsets.only(
+                    left: AppPadding.p28, right: AppPadding.p28),
+                    child: StreamBuilder(
+                      stream: // todo add me later,
+                      , builder: (context, snapshot) {
+                      return ElevatedButton(
+                          onPressed: () {}, child: const Text(AppStrings.login))
+                    },
+                    )
+                )
               ],
             ),
           ),
         ),
       ),
-    )
+    );
   }
 
   @override
