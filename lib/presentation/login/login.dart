@@ -15,11 +15,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  LoginViewModel _viewModel =
-  LoginViewModel(null); // todo pass here login useCase
+  final LoginViewModel _viewModel =
+      LoginViewModel(null); // todo pass here login useCase
 
-  TextEditingController _userNameController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   _bind() {
@@ -53,8 +53,9 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 SvgPicture.asset(ImageAssets.loginIc),
                 const SizedBox(height: AppSize.s28),
-                Padding(padding: const EdgeInsets.only(
-                    left: AppPadding.p28, right: AppPadding.p28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsUserNameValid,
                     builder: (context, snapshot) {
@@ -66,14 +67,15 @@ class _LoginViewState extends State<LoginView> {
                             labelText: AppStrings.username,
                             errorText: (snapshot.data ?? true)
                                 ? null
-                                : AppStrings.usernameError
-                        ),
+                                : AppStrings.usernameError),
                       );
                     },
-                  ),),
+                  ),
+                ),
                 const SizedBox(height: AppSize.s28),
-                Padding(padding: const EdgeInsets.only(
-                    left: AppPadding.p28, right: AppPadding.p28),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsPasswordValid,
                     builder: (context, snapshot) {
@@ -85,22 +87,28 @@ class _LoginViewState extends State<LoginView> {
                             labelText: AppStrings.password,
                             errorText: (snapshot.data ?? true)
                                 ? null
-                                : AppStrings.passwordError
-                        ),
+                                : AppStrings.passwordError),
                       );
                     },
-                  ),),
+                  ),
+                ),
                 const SizedBox(height: AppSize.s28),
-                Padding(padding: const EdgeInsets.only(
-                    left: AppPadding.p28, right: AppPadding.p28),
+                Padding(
+                    padding: const EdgeInsets.only(
+                        left: AppPadding.p28, right: AppPadding.p28),
                     child: StreamBuilder(
-                      stream: // todo add me later,
-                      , builder: (context, snapshot) {
-                      return ElevatedButton(
-                          onPressed: () {}, child: const Text(AppStrings.login))
-                    },
-                    )
-                )
+                      stream: _viewModel.outputIsAllInputsValid,
+                      builder: (context, snapshot) {
+                        return ElevatedButton(
+                          onPressed: (snapshot.data ?? false)
+                              ? () {
+                                  _viewModel.login();
+                                }
+                              : null,
+                          child: const Text(AppStrings.login),
+                        );
+                      },
+                    ))
               ],
             ),
           ),
