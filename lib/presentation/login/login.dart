@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
@@ -38,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return _getContentWidget();
   }
 
   Widget _getContentWidget() {
@@ -51,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
             key: _formKey,
             child: Column(
               children: [
-                SvgPicture.asset(ImageAssets.loginIc),
+                const Image(image: AssetImage(ImageAssets.splashLogo)),
                 const SizedBox(height: AppSize.s28),
                 Padding(
                   padding: const EdgeInsets.only(

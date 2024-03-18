@@ -7,6 +7,7 @@ import 'value_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData().copyWith(
+      useMaterial3: false,
       colorScheme: ColorScheme(
         primary: ColorManager.primary,
         onPrimary: ColorManager.primaryOpacity70,
