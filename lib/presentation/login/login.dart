@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
+import '../resources/strings_manager.dart';
 import '../resources/value_manager.dart';
 import 'login_viewmodel.dart';
 
@@ -14,11 +15,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel =
-      LoginViewModel(null); // todo pass here login useCase
+  LoginViewModel _viewModel =
+  LoginViewModel(null); // todo pass here login useCase
 
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController _userNameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   _bind() {
@@ -36,12 +37,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  void dispose() {
-    _viewModel.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container();
   }
@@ -49,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
   Widget _getContentWidget() {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: AppPadding.p100),
+        padding: EdgeInsets.only(top: AppPadding.p100),
         color: ColorManager.white,
         child: SingleChildScrollView(
           child: Form(
@@ -57,25 +52,55 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               children: [
                 SvgPicture.asset(ImageAssets.loginIc),
-                const SizedBox(height: AppSize.s28),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      left: AppPadding.p28, right: AppPadding.p28),
+                SizedBox(height: AppSize.s28),
+                Padding(padding: EdgeInsets.only(
+                    left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<bool>(
                     stream: _viewModel.outputIsUserNameValid,
                     builder: (context, snapshot) {
                       return TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         controller: _userNameController,
+                        decoration: InputDecoration(
+                            hintText: AppStrings.username,
+                            labelText: AppStrings.username,
+                            errorText: (snapshot.data ?? true)
+                                ? null
+                                : AppStrings.usernameError
+                        ),
                       );
                     },
-                  ),
-                )
+                  ),),
+                SizedBox(height: AppSize.s28),
+                Padding(padding: EdgeInsets.only(
+                    left: AppPadding.p28, right: AppPadding.p28),
+                  child: StreamBuilder<bool>(
+                    stream: _viewModel.outputIsPasswordValid,
+                    builder: (context, snapshot) {
+                      return TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                            hintText: AppStrings.password,
+                            labelText: AppStrings.password,
+                            errorText: (snapshot.data ?? true)
+                                ? null
+                                : AppStrings.passwordError
+                        ),
+                      );
+                    },
+                  ),)
               ],
             ),
           ),
         ),
       ),
-    );
+    )
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 }
