@@ -10,8 +10,8 @@ import '../network/network_info.dart';
 import '../request/request.dart';
 
 class RepositoryImpl extends Repository {
-  RemoteDataSource _remoteDataSource;
-  NetworkInfo _networkInfo;
+  final RemoteDataSource _remoteDataSource;
+  final NetworkInfo _networkInfo;
 
   RepositoryImpl(this._remoteDataSource, this._networkInfo);
 
