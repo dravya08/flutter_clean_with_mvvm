@@ -15,8 +15,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel =
-      LoginViewModel(null); // todo pass here login useCase
+  final LoginViewModel _viewModel = LoginViewModel(null);
 
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -127,10 +126,7 @@ class _LoginViewState extends State<LoginView> {
                               context, Routes.forgotPasswordRoute);
                         },
                         child: Text(AppStrings.forgetPassword,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleSmall),
+                            style: Theme.of(context).textTheme.titleSmall),
                       ),
                       TextButton(
                         onPressed: () {
@@ -138,10 +134,7 @@ class _LoginViewState extends State<LoginView> {
                               context, Routes.registerRoute);
                         },
                         child: Text(AppStrings.registerText,
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleSmall),
+                            style: Theme.of(context).textTheme.titleSmall),
                       )
                     ],
                   ),
