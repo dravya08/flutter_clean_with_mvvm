@@ -7,7 +7,6 @@ import 'value_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData().copyWith(
-      useMaterial3: false,
       colorScheme: ColorScheme(
         primary: ColorManager.primary,
         onPrimary: ColorManager.primaryOpacity70,
@@ -48,7 +47,6 @@ ThemeData getApplicationTheme() {
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
               textStyle: getRegularStyle(color: ColorManager.white),
-              backgroundColor: ColorManager.primary,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(AppSize.s12)))),
 
