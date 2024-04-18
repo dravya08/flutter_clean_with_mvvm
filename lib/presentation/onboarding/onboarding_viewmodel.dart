@@ -46,9 +46,9 @@ class OnBoardingViewModel extends BaseViewModel
     int nextIndex = _currentIndex++; // +1
     if (nextIndex >= _list.length) {
       _currentIndex = 0; // infinite loop to go to first item inside the slider
+      _postDataToView();
     }
 
-    _postDataToView();
     return _currentIndex;
   }
 
@@ -58,8 +58,9 @@ class OnBoardingViewModel extends BaseViewModel
     if (previousIndex == -1) {
       _currentIndex =
           _list.length - 1; // infinite loop to go to the length of slider list
+      _postDataToView();
     }
-    _postDataToView();
+
     return _currentIndex;
   }
 
