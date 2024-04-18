@@ -22,6 +22,7 @@ enum StateRendererType {
   EMPTY_SCREEN_STATE // EMPTY VIEW WHEN WE RECEIVE NO DATA FROM API SIDE FOR LIST SCREEN
 }
 
+//ignore: must_be_immutable
 class StateRenderer extends StatelessWidget {
   StateRendererType stateRendererType;
   Failure failure;
