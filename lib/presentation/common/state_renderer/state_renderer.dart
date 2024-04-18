@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../data/mapper/mapper.dart';
 import '../../../data/network/failure.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/font_manager.dart';
 import '../../resources/strings_manager.dart';
+import '../../resources/style_manager.dart';
+import '../../resources/value_manager.dart';
 
 enum StateRendererType {
   // POPUP STATES
@@ -23,13 +27,12 @@ class StateRenderer extends StatelessWidget {
   String title;
   Function retryActionFunction;
 
-  StateRenderer(
-      {super.key,
-      required this.stateRendererType,
-      Failure? failure,
-      String? message,
-      String? title,
-      required this.retryActionFunction})
+  StateRenderer({super.key,
+    required this.stateRendererType,
+    Failure? failure,
+    String? message,
+    String? title,
+    required this.retryActionFunction})
       : message = message ?? AppStrings.loading,
         title = title ?? EMPTY,
         failure = failure ?? DefaultFailure();
@@ -42,27 +45,54 @@ class StateRenderer extends StatelessWidget {
   Widget _getStateWidget() {
     switch (stateRendererType) {
       case StateRendererType.POPUP_LOADING_STATE:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
         break;
       case StateRendererType.POPUP_ERROR_STATE:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
         break;
       case StateRendererType.FULL_SCREEN_LOADING_STATE:
-        _getItemsInColumn();
-        break;
+        return _getItemsInColumn([_getAnimatedImage(), _getMessage(message)]);
       case StateRendererType.FULL_SCREEN_ERROR_STATE:
-        // TODO: Handle this case.
-        break;
+        return _getItemsInColumn(
+            [
+              _getAnimatedImage(),
+              _getMessage(failure.message),
+              _getRetryButton(AppStrings.retry_again)
+            ]);
       case StateRendererType.CONTENT_SCREEN_STATE:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
         break;
       case StateRendererType.EMPTY_SCREEN_STATE:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
         break;
       default:
         Container();
     }
   }
+
+  Widget _getAnimatedImage() {
+    return SizedBox(
+      height: AppSize.s100,
+      width: AppSize.s100,
+
+      child:, // json image
+
+    );
+  }
+
+  Widget _getMessage(String message) {
+    return Text(message, style: getMediumStyle(
+        color: ColorManager.black, fontSize: FontSize.s16),);
+  }
+
+  Widget _getRetryButton(String buttonTitle) {
+    return ElevatedButton(onPressed: () {
+
+    },
+        child: Text(buttonTitle)
+    );
+  }
+
 
   Widget _getItemsInColumn(List<Widget> children) {
     return Center(
