@@ -72,26 +72,62 @@ extension FlowStateExtension on FlowState {
   Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
       Function retryActionFunction) {
     switch (runtimeType) {
-      case LoadingState:
+      case LoadingState _:
         {
-          break;
+          if (getStateRendererType() == StateRendererType.POPUP_LOADING_STATE) {
+            // showing popup dialog
+            showPopUp(context, getStateRendererType(), getMessage());
+            // return the content ui of the screen
+            return contentScreenWidget;
+          } else // StateRendererType.FULL_SCREEN_LOADING_STATE
+          {
+            return StateRenderer(
+                stateRendererType: getStateRendererType(),
+                message: getMessage(),
+                retryActionFunction: retryActionFunction);
+          }
         }
-      case ErrorState:
+      case ErrorState _:
         {
-          break;
+          if (getStateRendererType() == StateRendererType.POPUP_ERROR_STATE) {
+            // showing popup dialog
+            showPopUp(context, getStateRendererType(), getMessage());
+            // return the content ui of the screen
+            return contentScreenWidget;
+          } else // StateRendererType.FULL_SCREEN_ERROR_STATE
+          {
+            return StateRenderer(
+                stateRendererType: getStateRendererType(),
+                message: getMessage(),
+                retryActionFunction: retryActionFunction);
+          }
         }
-      case ContentState:
+      case ContentState _:
         {
-          break;
+          return contentScreenWidget;
         }
-      case EmptyState:
+      case EmptyState _:
         {
-          break;
+          return StateRenderer(
+              stateRendererType: getStateRendererType(),
+              message: getMessage(),
+              retryActionFunction: retryActionFunction);
         }
       default:
         {
-          break;
+          return contentScreenWidget;
         }
     }
+  }
+
+  showPopUp(BuildContext context, StateRendererType stateRendererType,
+      String message) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => showDialog(
+        context: context,
+        builder: (BuildContext context) => StateRenderer(
+              stateRendererType: stateRendererType,
+              message: message,
+              retryActionFunction: () {},
+            )));
   }
 }
