@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_with_mvvm/presentation/resources/strings_manager.dart';
 
 import '../../app/di.dart';
 import '../forgot_password/forgot_password.dart';
@@ -8,7 +9,6 @@ import '../onboarding/onboarding.dart';
 import '../register/register.dart';
 import '../splash/splash.dart';
 import '../store_details/store_details.dart';
-import 'strings_manager.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -24,20 +24,20 @@ class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.splashRoute:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return MaterialPageRoute(builder: (_) => SplashView());
       case Routes.loginRoute:
         initLoginModule();
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
       case Routes.onBoardingRoute:
-        return MaterialPageRoute(builder: (_) => const OnBoardingView());
+        return MaterialPageRoute(builder: (_) => OnBoardingView());
       case Routes.registerRoute:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
+        return MaterialPageRoute(builder: (_) => RegisterView());
       case Routes.forgotPasswordRoute:
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+        return MaterialPageRoute(builder: (_) => ForgotPasswordView());
       case Routes.mainRoute:
-        return MaterialPageRoute(builder: (_) => const MainView());
+        return MaterialPageRoute(builder: (_) => MainView());
       case Routes.storeDetailsRoute:
-        return MaterialPageRoute(builder: (_) => const StoreDetailsView());
+        return MaterialPageRoute(builder: (_) => StoreDetailsView());
       default:
         return unDefinedRoute();
     }
@@ -47,9 +47,9 @@ class RouteGenerator {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: const Text(AppStrings.noRouteFound),
+                title: Text(AppStrings.noRouteFound),
               ),
-              body: const Center(child: Text(AppStrings.noRouteFound)),
+              body: Center(child: Text(AppStrings.noRouteFound)),
             ));
   }
 }

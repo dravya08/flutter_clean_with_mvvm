@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../data/mapper/mapper.dart';
-import '../../../data/network/failure.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/strings_manager.dart';
-import '../../resources/style_manager.dart';
-import '../../resources/value_manager.dart';
+import '../../resources/styles_manager.dart';
+import '../../resources/values_manager.dart';
 
 enum StateRendererType {
   // POPUP STATES
@@ -22,24 +21,21 @@ enum StateRendererType {
   EMPTY_SCREEN_STATE // EMPTY VIEW WHEN WE RECEIVE NO DATA FROM API SIDE FOR LIST SCREEN
 }
 
-//ignore: must_be_immutable
 class StateRenderer extends StatelessWidget {
   StateRendererType stateRendererType;
-  Failure failure;
   String message;
   String title;
   Function? retryActionFunction;
 
   StateRenderer(
-      {super.key,
+      {Key? key,
       required this.stateRendererType,
-      Failure? failure,
       String? message,
       String? title,
       required this.retryActionFunction})
       : message = message ?? AppStrings.loading,
         title = title ?? EMPTY,
-        failure = failure ?? DefaultFailure();
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +50,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.POPUP_ERROR_STATE:
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
-          _getMessage(failure.message),
+          _getMessage(message),
           _getRetryButton(AppStrings.ok, context)
         ]);
       case StateRendererType.FULL_SCREEN_LOADING_STATE:
@@ -63,7 +59,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.FULL_SCREEN_ERROR_STATE:
         return _getItemsInColumn([
           _getAnimatedImage(JsonAssets.error),
-          _getMessage(failure.message),
+          _getMessage(message),
           _getRetryButton(AppStrings.retry_again, context)
         ]);
       case StateRendererType.CONTENT_SCREEN_STATE:

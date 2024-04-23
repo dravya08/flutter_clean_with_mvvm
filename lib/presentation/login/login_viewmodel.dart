@@ -3,22 +3,22 @@ import 'dart:async';
 import '../../domain/usecase/login_usecase.dart';
 import '../base/baseviewmodel.dart';
 import '../common/freezed_data_classes.dart';
+import '../common/state_renderer/state_render_impl.dart';
 import '../common/state_renderer/state_renderer.dart';
-import '../common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     implements LoginViewModelInputs, LoginViewModelOutputs {
-  final StreamController _userNameStreamController =
+  StreamController _userNameStreamController =
       StreamController<String>.broadcast();
-  final StreamController _passwordStreamController =
+  StreamController _passwordStreamController =
       StreamController<String>.broadcast();
 
-  final StreamController _isAllInputsValidStreamController =
+  StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
   var loginObject = LoginObject("", "");
 
-  final LoginUseCase _loginUseCase;
+  LoginUseCase _loginUseCase;
 
   LoginViewModel(this._loginUseCase);
 
@@ -32,6 +32,7 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
+    // view tells state renderer, please show the content of the screen
     inputState.add(ContentState());
   }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_with_mvvm/presentation/common/state_renderer/state_renderer.dart';
 
 import '../../../data/mapper/mapper.dart';
 import '../../resources/strings_manager.dart';
-import 'state_renderer.dart';
 
 abstract class FlowState {
   StateRendererType getStateRendererType();
@@ -71,8 +71,8 @@ class EmptyState extends FlowState {
 extension FlowStateExtension on FlowState {
   Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
       Function retryActionFunction) {
-    switch (runtimeType) {
-      case LoadingState _:
+    switch (this.runtimeType) {
+      case LoadingState:
         {
           if (getStateRendererType() == StateRendererType.POPUP_LOADING_STATE) {
             // showing popup dialog
@@ -87,7 +87,7 @@ extension FlowStateExtension on FlowState {
                 retryActionFunction: retryActionFunction);
           }
         }
-      case ErrorState _:
+      case ErrorState:
         {
           dismissDialog(context);
           if (getStateRendererType() == StateRendererType.POPUP_ERROR_STATE) {
@@ -103,11 +103,12 @@ extension FlowStateExtension on FlowState {
                 retryActionFunction: retryActionFunction);
           }
         }
-      case ContentState _:
+      case ContentState:
         {
+          dismissDialog(context);
           return contentScreenWidget;
         }
-      case EmptyState _:
+      case EmptyState:
         {
           return StateRenderer(
               stateRendererType: getStateRendererType(),
@@ -116,7 +117,6 @@ extension FlowStateExtension on FlowState {
         }
       default:
         {
-          dismissDialog(context);
           return contentScreenWidget;
         }
     }

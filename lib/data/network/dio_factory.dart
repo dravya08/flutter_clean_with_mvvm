@@ -12,7 +12,7 @@ const String AUTHORIZATION = "authorization";
 const String DEFAULT_LANGUAGE = "language";
 
 class DioFactory {
-  final AppPreferences _appPreferences;
+  AppPreferences _appPreferences;
 
   DioFactory(this._appPreferences);
 

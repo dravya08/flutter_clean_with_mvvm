@@ -5,7 +5,7 @@ import '../presentation/resources/language_manager.dart';
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
 
 class AppPreferences {
-  final SharedPreferences _sharedPreferences;
+  SharedPreferences _sharedPreferences;
 
   AppPreferences(this._sharedPreferences);
 

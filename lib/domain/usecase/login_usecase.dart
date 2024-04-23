@@ -8,7 +8,7 @@ import '../repository/repository.dart';
 import 'base_usecase.dart';
 
 class LoginUseCase implements BaseUseCase<LoginUseCaseInput, Authentication> {
-  final Repository _repository;
+  Repository _repository;
 
   LoginUseCase(this._repository);
 
