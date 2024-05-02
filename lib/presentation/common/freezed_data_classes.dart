@@ -11,9 +11,9 @@ class LoginObject with _$LoginObject {
 class RegisterObject with _$RegisterObject {
   factory RegisterObject(
       String countryMobileCode,
+      String mobileNumber,
       String userName,
       String email,
       String password,
-      String mobileNumber,
       String profilePicture) = _RegisterObject;
 }

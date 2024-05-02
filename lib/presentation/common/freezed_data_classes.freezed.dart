@@ -154,14 +154,10 @@ abstract class _LoginObject implements LoginObject {
 mixin _$RegisterObject {
   String get countryMobileCode => throw _privateConstructorUsedError;
 
-  String get userName => throw _privateConstructorUsedError;
-
-  String get email => throw _privateConstructorUsedError;
-
-  String get password => throw _privateConstructorUsedError;
-
   String get mobileNumber => throw _privateConstructorUsedError;
-
+  String get userName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   String get profilePicture => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -174,14 +170,13 @@ abstract class $RegisterObjectCopyWith<$Res> {
   factory $RegisterObjectCopyWith(
           RegisterObject value, $Res Function(RegisterObject) then) =
       _$RegisterObjectCopyWithImpl<$Res, RegisterObject>;
-
   @useResult
   $Res call(
       {String countryMobileCode,
+      String mobileNumber,
       String userName,
       String email,
       String password,
-      String mobileNumber,
       String profilePicture});
 }
 
@@ -192,7 +187,6 @@ class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
 
   // ignore: unused_field
   final $Val _value;
-
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -200,16 +194,20 @@ class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
   @override
   $Res call({
     Object? countryMobileCode = null,
+    Object? mobileNumber = null,
     Object? userName = null,
     Object? email = null,
     Object? password = null,
-    Object? mobileNumber = null,
     Object? profilePicture = null,
   }) {
     return _then(_value.copyWith(
       countryMobileCode: null == countryMobileCode
           ? _value.countryMobileCode
           : countryMobileCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      mobileNumber: null == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String,
       userName: null == userName
           ? _value.userName
@@ -222,10 +220,6 @@ class _$RegisterObjectCopyWithImpl<$Res, $Val extends RegisterObject>
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      mobileNumber: null == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String,
       profilePicture: null == profilePicture
           ? _value.profilePicture
@@ -241,15 +235,14 @@ abstract class _$$RegisterObjectImplCopyWith<$Res>
   factory _$$RegisterObjectImplCopyWith(_$RegisterObjectImpl value,
           $Res Function(_$RegisterObjectImpl) then) =
       __$$RegisterObjectImplCopyWithImpl<$Res>;
-
   @override
   @useResult
   $Res call(
       {String countryMobileCode,
+      String mobileNumber,
       String userName,
       String email,
       String password,
-      String mobileNumber,
       String profilePicture});
 }
 
@@ -265,16 +258,20 @@ class __$$RegisterObjectImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? countryMobileCode = null,
+    Object? mobileNumber = null,
     Object? userName = null,
     Object? email = null,
     Object? password = null,
-    Object? mobileNumber = null,
     Object? profilePicture = null,
   }) {
     return _then(_$RegisterObjectImpl(
       null == countryMobileCode
           ? _value.countryMobileCode
           : countryMobileCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == mobileNumber
+          ? _value.mobileNumber
+          : mobileNumber // ignore: cast_nullable_to_non_nullable
               as String,
       null == userName
           ? _value.userName
@@ -288,10 +285,6 @@ class __$$RegisterObjectImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      null == mobileNumber
-          ? _value.mobileNumber
-          : mobileNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       null == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
@@ -303,11 +296,13 @@ class __$$RegisterObjectImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RegisterObjectImpl implements _RegisterObject {
-  _$RegisterObjectImpl(this.countryMobileCode, this.userName, this.email,
-      this.password, this.mobileNumber, this.profilePicture);
+  _$RegisterObjectImpl(this.countryMobileCode, this.mobileNumber, this.userName,
+      this.email, this.password, this.profilePicture);
 
   @override
   final String countryMobileCode;
+  @override
+  final String mobileNumber;
   @override
   final String userName;
   @override
@@ -315,13 +310,11 @@ class _$RegisterObjectImpl implements _RegisterObject {
   @override
   final String password;
   @override
-  final String mobileNumber;
-  @override
   final String profilePicture;
 
   @override
   String toString() {
-    return 'RegisterObject(countryMobileCode: $countryMobileCode, userName: $userName, email: $email, password: $password, mobileNumber: $mobileNumber, profilePicture: $profilePicture)';
+    return 'RegisterObject(countryMobileCode: $countryMobileCode, mobileNumber: $mobileNumber, userName: $userName, email: $email, password: $password, profilePicture: $profilePicture)';
   }
 
   @override
@@ -331,20 +324,20 @@ class _$RegisterObjectImpl implements _RegisterObject {
             other is _$RegisterObjectImpl &&
             (identical(other.countryMobileCode, countryMobileCode) ||
                 other.countryMobileCode == countryMobileCode) &&
+            (identical(other.mobileNumber, mobileNumber) ||
+                other.mobileNumber == mobileNumber) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.mobileNumber, mobileNumber) ||
-                other.mobileNumber == mobileNumber) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, countryMobileCode, userName,
-      email, password, mobileNumber, profilePicture);
+  int get hashCode => Object.hash(runtimeType, countryMobileCode, mobileNumber,
+      userName, email, password, profilePicture);
 
   @JsonKey(ignore: true)
   @override
@@ -357,30 +350,25 @@ class _$RegisterObjectImpl implements _RegisterObject {
 abstract class _RegisterObject implements RegisterObject {
   factory _RegisterObject(
       final String countryMobileCode,
+      final String mobileNumber,
       final String userName,
       final String email,
       final String password,
-      final String mobileNumber,
       final String profilePicture) = _$RegisterObjectImpl;
 
   @override
   String get countryMobileCode;
 
   @override
+  String get mobileNumber;
+  @override
   String get userName;
-
   @override
   String get email;
-
   @override
   String get password;
-
-  @override
-  String get mobileNumber;
-
   @override
   String get profilePicture;
-
   @override
   @JsonKey(ignore: true)
   _$$RegisterObjectImplCopyWith<_$RegisterObjectImpl> get copyWith =>
