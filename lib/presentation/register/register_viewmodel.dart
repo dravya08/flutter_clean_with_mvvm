@@ -4,27 +4,30 @@ import 'dart:io';
 import '../../app/functions.dart';
 import '../../domain/usecase/register_usecase.dart';
 import '../base/baseviewmodel.dart';
+import '../common/freezed_data_classes.dart';
 
 class RegisterViewModel extends BaseViewModel
     implements RegisterViewModelInput, RegisterViewModelOutput {
-  StreamController _userNameStreamController =
+  final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
-  StreamController _mobileNumberStreamController =
-      StreamController<String>.broadcast();
-
-  StreamController _emailStreamController =
+  final StreamController _mobileNumberStreamController =
       StreamController<String>.broadcast();
 
-  StreamController _passwordStreamController =
+  final StreamController _emailStreamController =
       StreamController<String>.broadcast();
 
-  StreamController _profilePictureStreamController =
+  final StreamController _passwordStreamController =
+      StreamController<String>.broadcast();
+
+  final StreamController _profilePictureStreamController =
       StreamController<File>.broadcast();
 
-  StreamController _isAllInputsValidStreamController =
+  final StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
-  RegisterUseCase _registerUseCase;
+  final RegisterUseCase _registerUseCase;
+
+  var registerViewObject = RegisterObject("", "", "", "", "", "");
 
   RegisterViewModel(this._registerUseCase);
 
