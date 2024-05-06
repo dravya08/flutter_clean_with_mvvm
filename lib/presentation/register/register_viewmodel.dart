@@ -5,6 +5,8 @@ import '../../app/functions.dart';
 import '../../domain/usecase/register_usecase.dart';
 import '../base/baseviewmodel.dart';
 import '../common/freezed_data_classes.dart';
+import '../common/state_renderer/state_render_impl.dart';
+import '../common/state_renderer/state_renderer.dart';
 
 class RegisterViewModel extends BaseViewModel
     implements RegisterViewModelInput, RegisterViewModelOutput {
@@ -34,7 +36,32 @@ class RegisterViewModel extends BaseViewModel
   //  -- inputs
   @override
   void start() {
-    // TODO: implement start
+    inputState.add(ContentState());
+  }
+
+  @override
+  register() async {
+    inputState.add(
+        LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+    (await _registerUseCase.execute(RegisterUseCaseInput(
+      registerViewObject.countryMobileCode,
+      registerViewObject.userName,
+      registerViewObject.email,
+      registerViewObject.password,
+      registerViewObject.mobileNumber,
+      registerViewObject.profilePicture,
+    )))
+        .fold(
+            (failure) => {
+                  // left -> failure
+                  inputState.add(ErrorState(
+                      StateRendererType.POPUP_ERROR_STATE, failure.message))
+                }, (data) {
+      // right -> success (data)
+      inputState.add(ContentState());
+
+      // navigate to main screen after the login
+    });
   }
 
   @override
@@ -187,12 +214,6 @@ class RegisterViewModel extends BaseViewModel
   @override
   Stream<File> get outputIsProfilePictureValid =>
       _profilePictureStreamController.stream.map((file) => file);
-
-  @override
-  register() {
-    // TODO: implement register
-    throw UnimplementedError();
-  }
 
   // -- private methods
   bool _isUserNameValid(String userName) {
