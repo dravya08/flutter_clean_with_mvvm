@@ -36,6 +36,7 @@ class RegisterViewModel extends BaseViewModel
   //  -- inputs
   @override
   void start() {
+    // view tells state renderer, please show the content of the screen
     inputState.add(ContentState());
   }
 
@@ -44,11 +45,11 @@ class RegisterViewModel extends BaseViewModel
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _registerUseCase.execute(RegisterUseCaseInput(
+      registerViewObject.mobileNumber,
       registerViewObject.countryMobileCode,
       registerViewObject.userName,
       registerViewObject.email,
       registerViewObject.password,
-      registerViewObject.mobileNumber,
       registerViewObject.profilePicture,
     )))
         .fold(
@@ -212,7 +213,7 @@ class RegisterViewModel extends BaseViewModel
       .map((isPasswordValid) => isPasswordValid ? null : "Invalid Password");
 
   @override
-  Stream<File> get outputProfilePicture =>
+  Stream<File?> get outputProfilePicture =>
       _profilePictureStreamController.stream.map((file) => file);
 
   // -- private methods
