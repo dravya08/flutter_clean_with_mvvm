@@ -153,7 +153,6 @@ abstract class _LoginObject implements LoginObject {
 /// @nodoc
 mixin _$RegisterObject {
   String get countryMobileCode => throw _privateConstructorUsedError;
-
   String get mobileNumber => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -358,7 +357,6 @@ abstract class _RegisterObject implements RegisterObject {
 
   @override
   String get countryMobileCode;
-
   @override
   String get mobileNumber;
   @override
