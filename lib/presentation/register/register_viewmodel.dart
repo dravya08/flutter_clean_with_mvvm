@@ -27,6 +27,9 @@ class RegisterViewModel extends BaseViewModel
   StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
+  StreamController isUserLoggedInSuccessfullyStreamController =
+      StreamController<bool>();
+
   RegisterUseCase _registerUseCase;
 
   var registerViewObject = RegisterObject("", "", "", "", "", "");
@@ -45,11 +48,11 @@ class RegisterViewModel extends BaseViewModel
     inputState.add(
         LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _registerUseCase.execute(RegisterUseCaseInput(
-      registerViewObject.mobileNumber,
       registerViewObject.countryMobileCode,
       registerViewObject.userName,
       registerViewObject.email,
       registerViewObject.password,
+      registerViewObject.mobileNumber,
       registerViewObject.profilePicture,
     )))
         .fold(
@@ -62,6 +65,7 @@ class RegisterViewModel extends BaseViewModel
       inputState.add(ContentState());
 
       // navigate to main screen after the login
+      isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 
@@ -73,6 +77,7 @@ class RegisterViewModel extends BaseViewModel
     _emailStreamController.close();
     _passwordStreamController.close();
     _profilePictureStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
     super.dispose();
   }
 
