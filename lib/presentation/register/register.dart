@@ -120,10 +120,10 @@ class _RegisterViewState extends State<RegisterView> {
                                 _viewModel
                                     .setCountryCode(country.dialCode ?? EMPTY);
                               },
-                              initialSelection: "+11",
+                              initialSelection: "+33",
                               showCountryOnly: true,
                               showOnlyCountryWhenClosed: true,
-                              favorite: ["+91", "+92", "+90"],
+                              favorite: ["+966", "+02", "+39"],
                             )),
                         Expanded(
                             flex: 3,
@@ -176,6 +176,21 @@ class _RegisterViewState extends State<RegisterView> {
                               labelText: AppStrings.password,
                               errorText: snapshot.data));
                     },
+                  ),
+                ),
+                SizedBox(height: AppSize.s28),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: AppPadding.p28, right: AppPadding.p28),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: ColorManager.lightGrey)),
+                    child: GestureDetector(
+                      child: _getMediaWidget(),
+                      onTap: () {
+                        _showPicker(context);
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(height: AppSize.s28),
