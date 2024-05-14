@@ -11,7 +11,6 @@ import '../../data/mapper/mapper.dart';
 import '../common/state_renderer/state_render_impl.dart';
 import '../resources/assets_manager.dart';
 import '../resources/color_manager.dart';
-import '../resources/routes_manager.dart';
 import '../resources/strings_manager.dart';
 import '../resources/values_manager.dart';
 
@@ -214,7 +213,7 @@ class _RegisterViewState extends State<RegisterView> {
                                       _viewModel.register();
                                     }
                                   : null,
-                              child: Text(AppStrings.login)),
+                              child: Text(AppStrings.register)),
                         );
                       },
                     )),
@@ -224,25 +223,12 @@ class _RegisterViewState extends State<RegisterView> {
                     left: AppPadding.p28,
                     right: AppPadding.p28,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, Routes.forgotPasswordRoute);
-                        },
-                        child: Text(AppStrings.forgetPassword,
-                            style: Theme.of(context).textTheme.subtitle2),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.registerRoute);
-                        },
-                        child: Text(AppStrings.registerText,
-                            style: Theme.of(context).textTheme.subtitle2),
-                      )
-                    ],
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(AppStrings.haveAccount,
+                        style: Theme.of(context).textTheme.subtitle2),
                   ),
                 )
               ],
