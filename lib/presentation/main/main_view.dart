@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../resources/color_manager.dart';
 import '../resources/strings_manager.dart';
+import '../resources/values_manager.dart';
 import 'home_page.dart';
 import 'notification_page.dart';
 import 'search_page.dart';
@@ -15,10 +17,16 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   List<Widget> pages = [
-    HomePage(),
-    SearchPage(),
-    NotificationsPage(),
-    SettingsPage()
+    const HomePage(),
+    const SearchPage(),
+    const NotificationsPage(),
+    const SettingsPage()
+  ];
+  List<String> titles = [
+    AppStrings.home,
+    AppStrings.search,
+    AppStrings.notifications,
+    AppStrings.settings,
   ];
   var _title = AppStrings.home;
   var _currentIndex = 0;
@@ -33,6 +41,35 @@ class _MainViewState extends State<MainView> {
         ),
       ),
       body: pages[_currentIndex],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(color: ColorManager.black, spreadRadius: AppSize.s1_5)
+        ]),
+        child: BottomNavigationBar(
+          selectedItemColor: ColorManager.primary,
+          unselectedItemColor: ColorManager.grey,
+          currentIndex: _currentIndex,
+          onTap: onTap,
+          items: [
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.home), label: titles[_currentIndex]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.search), label: titles[_currentIndex]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.notifications),
+                label: titles[_currentIndex]),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.settings), label: titles[_currentIndex]),
+          ],
+        ),
+      ),
     );
+  }
+
+  onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+      _title = titles[index];
+    });
   }
 }
