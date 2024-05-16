@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
 
+import '../resources/strings_manager.dart';
+import 'home_page.dart';
+import 'notification_page.dart';
+import 'search_page.dart';
+import 'settings_page.dart';
+
 class MainView extends StatefulWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   @override
-  _MainViewState createState() => _MainViewState();
+  State<MainView> createState() => _MainViewState();
 }
 
 class _MainViewState extends State<MainView> {
+  List<Widget> pages = [
+    HomePage(),
+    SearchPage(),
+    NotificationsPage(),
+    SettingsPage()
+  ];
+  var _title = AppStrings.home;
+  var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          _title,
+          style: Theme.of(context).textTheme.headline2,
+        ),
+      ),
+      body: pages[_currentIndex],
+    );
   }
 }
