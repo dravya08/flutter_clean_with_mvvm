@@ -12,15 +12,15 @@ import '../resources/values_manager.dart';
 import 'onboarding_viewmodel.dart';
 
 class OnBoardingView extends StatefulWidget {
-  const OnBoardingView({Key? key}) : super(key: key);
+  const OnBoardingView({super.key});
 
   @override
-  _OnBoardingViewState createState() => _OnBoardingViewState();
+  State<OnBoardingView> createState() => _OnBoardingViewState();
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  PageController _pageController = PageController(initialPage: 0);
-  OnBoardingViewModel _viewModel = OnBoardingViewModel();
+  final PageController _pageController = PageController(initialPage: 0);
+  final OnBoardingViewModel _viewModel = OnBoardingViewModel();
 
   _bind() {
     _viewModel.start();
@@ -44,7 +44,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget _getContentWidget(SliderViewObject? sliderViewObject) {
     if (sliderViewObject == null) {
       return Container();
-    } else
+    } else {
       return Scaffold(
         backgroundColor: ColorManager.white,
         appBar: AppBar(
@@ -89,6 +89,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           ),
         ),
       );
+    }
   }
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
@@ -150,8 +151,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  Widget _getProperCircle(int index, int _currentIndex) {
-    if (index == _currentIndex) {
+  Widget _getProperCircle(int index, int currentIndex) {
+    if (index == currentIndex) {
       return SvgPicture.asset(ImageAssets.hollowCircleIc); // selected slider
     } else {
       return SvgPicture.asset(ImageAssets.solidCircleIc); // unselected slider
@@ -166,9 +167,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 }
 
 class OnBoardingPage extends StatelessWidget {
-  SliderObject _sliderObject;
+  final SliderObject _sliderObject;
 
-  OnBoardingPage(this._sliderObject, {Key? key}) : super(key: key);
+  const OnBoardingPage(this._sliderObject, {super.key});
 
   @override
   Widget build(BuildContext context) {
