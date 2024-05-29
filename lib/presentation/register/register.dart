@@ -248,7 +248,7 @@ class _RegisterViewState extends State<RegisterView> {
                       Navigator.of(context).pop();
                     },
                     child: Text(AppStrings.haveAccount,
-                        style: Theme.of(context).textTheme.subtitle2),
+                        style: Theme.of(context).textTheme.titleSmall),
                   ),
                 )
               ],
