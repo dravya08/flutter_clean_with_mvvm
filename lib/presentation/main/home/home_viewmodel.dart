@@ -6,7 +6,8 @@ import '../../../domain/model/model.dart';
 import '../../../domain/usecase/home_usecase.dart';
 import '../../base/baseviewmodel.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends BaseViewModel
+    implements HomeViewModelInputs, HomeViewModelOutputs {
   final HomeUseCase _homeUseCase;
 
   final StreamController _bannersStreamController =
@@ -30,4 +31,42 @@ class HomeViewModel extends BaseViewModel {
     _storesStreamController.close();
     super.dispose();
   }
+
+  @override
+  Sink get inputBanners => _bannersStreamController.sink;
+
+  @override
+  Sink get inputServices => _servicesStreamController.sink;
+
+  @override
+  Sink get inputStores => _storesStreamController.sink;
+
+  // outputs
+  @override
+  Stream<List<BannerAd>> get outputBanners =>
+      _bannersStreamController.stream.map((banners) => banners);
+
+  @override
+  Stream<List<Service>> get outputServices =>
+      _servicesStreamController.stream.map((services) => services);
+
+  @override
+  Stream<List<Store>> get outputStores =>
+      _storesStreamController.stream.map((stores) => stores);
+}
+
+abstract class HomeViewModelInputs {
+  Sink get inputStores;
+
+  Sink get inputServices;
+
+  Sink get inputBanners;
+}
+
+abstract class HomeViewModelOutputs {
+  Stream<List<Store>> get outputStores;
+
+  Stream<List<Service>> get outputServices;
+
+  Stream<List<BannerAd>> get outputBanners;
 }
