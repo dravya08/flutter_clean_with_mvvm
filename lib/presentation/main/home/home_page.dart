@@ -5,6 +5,7 @@ import '../../../app/di.dart';
 import '../../../domain/model/model.dart';
 import '../../common/state_renderer/state_render_impl.dart';
 import '../../resources/color_manager.dart';
+import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import 'home_viewmodel.dart';
@@ -173,7 +174,49 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getStores() {
-    return const Center();
+    return StreamBuilder<List<Store>>(
+        stream: _viewModel.outputStores,
+        builder: (context, snapshot) {
+          return _getStoresWidget(snapshot.data);
+        });
+  }
+
+  Widget _getStoresWidget(List<Store>? stores) {
+    if (stores != null) {
+      return Padding(
+        padding: const EdgeInsets.only(
+            left: AppPadding.p12, right: AppPadding.p12, top: AppPadding.p12),
+        child: Flex(
+          direction: Axis.vertical,
+          children: [
+            GridView.count(
+              crossAxisSpacing: AppSize.s8,
+              mainAxisSpacing: AppSize.s8,
+              physics: ScrollPhysics(),
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              children: List.generate(stores.length, (index) {
+                return InkWell(
+                  onTap: () {
+                    // navigate to store details screen
+                    Navigator.of(context).pushNamed(Routes.storeDetailsRoute);
+                  },
+                  child: Card(
+                    elevation: AppSize.s4,
+                    child: Image.network(
+                      stores[index].image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              }),
+            )
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
   }
 
   @override
