@@ -82,3 +82,4 @@ initHomeModule() {
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
     instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
+}
