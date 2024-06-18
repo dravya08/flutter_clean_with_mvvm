@@ -100,7 +100,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                           onPressed: (snapshot.data ?? false)
                               ? () => _viewModel.forgotPassword()
                               : null,
-                          child: Text(AppStrings.resetPassword)),
+                          child: const Text(AppStrings.resetPassword)),
                     );
                   },
                 ),

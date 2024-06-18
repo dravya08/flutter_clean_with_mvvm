@@ -7,7 +7,7 @@ const String PREFS_KEY_ONBOARDING_SCREEN = "PREFS_KEY_ONBOARDING_SCREEN";
 const String PREFS_KEY_IS_USER_LOGGED_IN = "PREFS_KEY_IS_USER_LOGGED_IN";
 
 class AppPreferences {
-  SharedPreferences _sharedPreferences;
+  final SharedPreferences _sharedPreferences;
 
   AppPreferences(this._sharedPreferences);
 

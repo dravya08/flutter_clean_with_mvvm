@@ -18,24 +18,24 @@ import '../resources/strings_manager.dart';
 import '../resources/values_manager.dart';
 
 class RegisterView extends StatefulWidget {
-  const RegisterView({Key? key}) : super(key: key);
+  const RegisterView({super.key});
 
   @override
   _RegisterViewState createState() => _RegisterViewState();
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  RegisterViewModel _viewModel = instance<RegisterViewModel>();
-  AppPreferences _appPreferences = instance<AppPreferences>();
+  final RegisterViewModel _viewModel = instance<RegisterViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   ImagePicker picker = instance<ImagePicker>();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController _userNameTextEditingController =
+  final TextEditingController _userNameTextEditingController =
       TextEditingController();
-  TextEditingController _mobileNumberTextEditingController =
+  final TextEditingController _mobileNumberTextEditingController =
       TextEditingController();
-  TextEditingController _emailEditingController = TextEditingController();
-  TextEditingController _passwordEditingController = TextEditingController();
+  final TextEditingController _emailEditingController = TextEditingController();
+  final TextEditingController _passwordEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -97,16 +97,16 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget _getContentWidget() {
     return Container(
-        padding: EdgeInsets.only(top: AppPadding.p30),
+        padding: const EdgeInsets.only(top: AppPadding.p30),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                Image(image: AssetImage(ImageAssets.splashLogo)),
-                SizedBox(height: AppSize.s28),
+                const Image(image: AssetImage(ImageAssets.splashLogo)),
+                const SizedBox(height: AppSize.s28),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<String?>(
                     stream: _viewModel.outputErrorUserName,
@@ -123,7 +123,7 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         top: AppPadding.p20,
                         left: AppPadding.p28,
                         right: AppPadding.p28,
@@ -142,7 +142,7 @@ class _RegisterViewState extends State<RegisterView> {
                               showCountryOnly: true,
                               hideMainText: true,
                               showOnlyCountryWhenClosed: true,
-                              favorite: ["+966", "+02", "+39"],
+                              favorite: const ["+966", "+02", "+39"],
                             )),
                         Expanded(
                             flex: 3,
@@ -163,9 +163,9 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                 ),
-                SizedBox(height: AppSize.s12),
+                const SizedBox(height: AppSize.s12),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: AppPadding.p28, right: AppPadding.p28),
                   child: StreamBuilder<String?>(
                     stream: _viewModel.outputErrorEmail,
@@ -180,9 +180,9 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                SizedBox(height: AppSize.s12),
+                const SizedBox(height: AppSize.s12),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       top: AppPadding.p12,
                       left: AppPadding.p28,
                       right: AppPadding.p28),
@@ -199,9 +199,9 @@ class _RegisterViewState extends State<RegisterView> {
                     },
                   ),
                 ),
-                SizedBox(height: AppSize.s12),
+                const SizedBox(height: AppSize.s12),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       top: AppPadding.p12,
                       left: AppPadding.p28,
                       right: AppPadding.p28),
@@ -217,9 +217,9 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                 ),
-                SizedBox(height: AppSize.s28),
+                const SizedBox(height: AppSize.s28),
                 Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         left: AppPadding.p28, right: AppPadding.p28),
                     child: StreamBuilder<bool>(
                       stream: _viewModel.outputIsAllInputsValid,
@@ -233,12 +233,12 @@ class _RegisterViewState extends State<RegisterView> {
                                       _viewModel.register();
                                     }
                                   : null,
-                              child: Text(AppStrings.register)),
+                              child: const Text(AppStrings.register)),
                         );
                       },
                     )),
                 Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: AppPadding.p8,
                     left: AppPadding.p28,
                     right: AppPadding.p28,
@@ -259,11 +259,11 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget _getMediaWidget() {
     return Padding(
-      padding: EdgeInsets.only(left: AppPadding.p8, right: AppPadding.p8),
+      padding: const EdgeInsets.only(left: AppPadding.p8, right: AppPadding.p8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(child: Text(AppStrings.profilePicture)),
+          const Flexible(child: Text(AppStrings.profilePicture)),
           Flexible(
               child: StreamBuilder<File?>(
             stream: _viewModel.outputProfilePicture,
@@ -293,18 +293,18 @@ class _RegisterViewState extends State<RegisterView> {
             child: Wrap(
               children: [
                 ListTile(
-                  trailing: Icon(Icons.arrow_forward),
-                  leading: Icon(Icons.camera),
-                  title: Text(AppStrings.photoGalley),
+                  trailing: const Icon(Icons.arrow_forward),
+                  leading: const Icon(Icons.camera),
+                  title: const Text(AppStrings.photoGalley),
                   onTap: () {
                     _imageFormGallery();
                     Navigator.of(context).pop();
                   },
                 ),
                 ListTile(
-                  trailing: Icon(Icons.arrow_forward),
-                  leading: Icon(Icons.camera_alt_rounded),
-                  title: Text(AppStrings.photoCamera),
+                  trailing: const Icon(Icons.arrow_forward),
+                  leading: const Icon(Icons.camera_alt_rounded),
+                  title: const Text(AppStrings.photoCamera),
                   onTap: () {
                     _imageFormCamera();
                     Navigator.of(context).pop();

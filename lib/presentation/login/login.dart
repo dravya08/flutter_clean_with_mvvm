@@ -144,20 +144,24 @@ class _LoginViewState extends State<LoginView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, Routes.forgotPasswordRoute);
-                        },
-                        child: Text(AppStrings.forgetPassword,
-                            style: Theme.of(context).textTheme.titleSmall),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, Routes.forgotPasswordRoute);
+                          },
+                          child: Text(AppStrings.forgetPassword,
+                              style: Theme.of(context).textTheme.titleSmall),
+                        ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.registerRoute);
-                        },
-                        child: Text(AppStrings.registerText,
-                            style: Theme.of(context).textTheme.titleSmall),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.registerRoute);
+                          },
+                          child: Text(AppStrings.registerText,
+                              style: Theme.of(context).textTheme.titleSmall),
+                        ),
                       )
                     ],
                   ),

@@ -8,12 +8,12 @@ import '../common/state_renderer/state_renderer.dart';
 
 class LoginViewModel extends BaseViewModel
     implements LoginViewModelInputs, LoginViewModelOutputs {
-  StreamController _userNameStreamController =
+  final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
-  StreamController _passwordStreamController =
+  final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
 
-  StreamController _isAllInputsValidStreamController =
+  final StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
   StreamController isUserLoggedInSuccessfullyStreamController =
@@ -21,7 +21,7 @@ class LoginViewModel extends BaseViewModel
 
   var loginObject = LoginObject("", "");
 
-  LoginUseCase _loginUseCase;
+  final LoginUseCase _loginUseCase;
 
   LoginViewModel(this._loginUseCase);
 

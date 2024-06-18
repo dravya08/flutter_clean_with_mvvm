@@ -10,27 +10,27 @@ import '../common/state_renderer/state_renderer.dart';
 
 class RegisterViewModel extends BaseViewModel
     implements RegisterViewModelInput, RegisterViewModelOutput {
-  StreamController _userNameStreamController =
+  final StreamController _userNameStreamController =
       StreamController<String>.broadcast();
-  StreamController _mobileNumberStreamController =
-      StreamController<String>.broadcast();
-
-  StreamController _emailStreamController =
+  final StreamController _mobileNumberStreamController =
       StreamController<String>.broadcast();
 
-  StreamController _passwordStreamController =
+  final StreamController _emailStreamController =
       StreamController<String>.broadcast();
 
-  StreamController _profilePictureStreamController =
+  final StreamController _passwordStreamController =
+      StreamController<String>.broadcast();
+
+  final StreamController _profilePictureStreamController =
       StreamController<File>.broadcast();
 
-  StreamController _isAllInputsValidStreamController =
+  final StreamController _isAllInputsValidStreamController =
       StreamController<void>.broadcast();
 
   StreamController isUserLoggedInSuccessfullyStreamController =
       StreamController<bool>();
 
-  RegisterUseCase _registerUseCase;
+  final RegisterUseCase _registerUseCase;
 
   var registerViewObject = RegisterObject("", "", "", "", "", "");
 

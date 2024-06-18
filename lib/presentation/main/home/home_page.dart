@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeViewModel _viewModel = instance<HomeViewModel>();
+  final HomeViewModel _viewModel = instance<HomeViewModel>();
 
   @override
   void initState() {
@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
         padding:
             const EdgeInsets.only(left: AppPadding.p12, right: AppPadding.p12),
         child: Container(
-          height: AppSize.s140,
+          height: AppSize.s150,
           margin: const EdgeInsets.symmetric(vertical: AppMargin.m12),
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -147,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                             child: Image.network(
                               service.image,
                               fit: BoxFit.cover,
-                              width: AppSize.s100,
+                              width: AppSize.s120,
                               height: AppSize.s100,
                             ),
                           ),
@@ -192,7 +192,7 @@ class _HomePageState extends State<HomePage> {
             GridView.count(
               crossAxisSpacing: AppSize.s8,
               mainAxisSpacing: AppSize.s8,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               shrinkWrap: true,
               crossAxisCount: 2,
               children: List.generate(stores.length, (index) {

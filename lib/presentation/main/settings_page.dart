@@ -12,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text(AppStrings.settings),
     );
   }
