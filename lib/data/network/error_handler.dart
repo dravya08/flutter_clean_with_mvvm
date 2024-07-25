@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../../presentation/resources/strings_manager.dart';
 import 'failure.dart';
 
 enum DataSource {
@@ -23,7 +24,7 @@ class ErrorHandler implements Exception {
   late Failure failure;
 
   ErrorHandler.handle(dynamic error) {
-    if (error is DioException) {
+    if (error is DioError) {
       // dio error so its error from response of the API
       failure = _handleError(error);
     } else {
@@ -129,29 +130,36 @@ class ResponseCode {
 
 class ResponseMessage {
   // API status codes
-  static const String SUCCESS = "success"; // success with data
+  // API response codes
+  static const String SUCCESS = AppStrings.success; // success with data
   static const String NO_CONTENT =
-      "success with no content"; // success with no content
+      AppStrings.noContent; // success with no content
   static const String BAD_REQUEST =
-      "Bad request, try again later"; // failure, api rejected the request
+      AppStrings.badRequestError; // failure, api rejected our request
   static const String FORBIDDEN =
-      "forbidden request, try again later"; // failure, api rejected the request
+      AppStrings.forbiddenError; // failure,  api rejected our request
   static const String UNAUTHORISED =
-      "user is unauthorised, try again later"; // failure user is not authorised
-  static const String NOT_FOUND =
-      "Url is not found, try again later"; // failure, api url is not correct and not found
+      AppStrings.unauthorizedError; // failure, user is not authorised
+  static const String NOT_FOUND = AppStrings
+      .notFoundError; // failure, API url is not correct and not found in api side.
   static const String INTERNAL_SERVER_ERROR =
-      "some thing went wrong, try again later"; // failure, crash happened in server side
+      AppStrings.internalServerError; // failure, a crash happened in API side.
 
-  // local status code
-  static const String DEFAULT = "some thing went wrong, try again later";
-  static const String CONNECT_TIMEOUT = "time out error, try again later";
-  static const String CANCEL = "request was cancelled, try again later";
-  static const String RECEIVE_TIMEOUT = "time out error, try again later";
-  static const String SEND_TIMEOUT = "time out error, try again later";
-  static const String CACHE_ERROR = "Cache error, try again later";
+  // local responses codes
+  static const String DEFAULT =
+      AppStrings.defaultError; // unknown error happened
+  static const String CONNECT_TIMEOUT =
+      AppStrings.timeoutError; // issue in connectivity
+  static const String CANCEL =
+      AppStrings.defaultError; // API request was cancelled
+  static const String RECEIVE_TIMEOUT =
+      AppStrings.timeoutError; //  issue in connectivity
+  static const String SEND_TIMEOUT =
+      AppStrings.timeoutError; //  issue in connectivity
+  static const String CACHE_ERROR = AppStrings
+      .defaultError; //  issue in getting data from local data source (cache)
   static const String NO_INTERNET_CONNECTION =
-      "Please check your internet connection";
+      AppStrings.noInternetError; // issue in connectivity
 }
 
 class ApiInternalStatus {
