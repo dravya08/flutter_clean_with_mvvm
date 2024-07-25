@@ -7,7 +7,7 @@ part of 'responses.dart';
 // **************************************************************************
 
 BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse()
-  ..status = json['status'] as int?
+  ..status = (json['status'] as num?)?.toInt()
   ..message = json['message'] as String?;
 
 Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
@@ -20,7 +20,7 @@ CustomerResponse _$CustomerResponseFromJson(Map<String, dynamic> json) =>
     CustomerResponse(
       json['id'] as String?,
       json['name'] as String?,
-      json['numOfNotifications'] as int?,
+      (json['numOfNotifications'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CustomerResponseToJson(CustomerResponse instance) =>
@@ -54,7 +54,7 @@ AuthenticationResponse _$AuthenticationResponseFromJson(
           ? null
           : ContactsResponse.fromJson(json['contacts'] as Map<String, dynamic>),
     )
-      ..status = json['status'] as int?
+      ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?;
 
 Map<String, dynamic> _$AuthenticationResponseToJson(
@@ -71,7 +71,7 @@ ForgotPasswordResponse _$ForgotPasswordResponseFromJson(
     ForgotPasswordResponse(
       json['support'] as String?,
     )
-      ..status = json['status'] as int?
+      ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?;
 
 Map<String, dynamic> _$ForgotPasswordResponseToJson(
@@ -84,7 +84,7 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(
 
 ServiceResponse _$ServiceResponseFromJson(Map<String, dynamic> json) =>
     ServiceResponse(
-      json['id'] as int?,
+      (json['id'] as num?)?.toInt(),
       json['title'] as String?,
       json['image'] as String?,
     );
@@ -98,7 +98,7 @@ Map<String, dynamic> _$ServiceResponseToJson(ServiceResponse instance) =>
 
 StoreResponse _$StoreResponseFromJson(Map<String, dynamic> json) =>
     StoreResponse(
-      json['id'] as int?,
+      (json['id'] as num?)?.toInt(),
       json['title'] as String?,
       json['image'] as String?,
     );
@@ -112,7 +112,7 @@ Map<String, dynamic> _$StoreResponseToJson(StoreResponse instance) =>
 
 BannerResponse _$BannerResponseFromJson(Map<String, dynamic> json) =>
     BannerResponse(
-      json['id'] as int?,
+      (json['id'] as num?)?.toInt(),
       json['title'] as String?,
       json['image'] as String?,
       json['link'] as String?,
@@ -151,7 +151,7 @@ HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) => HomeResponse(
           ? null
           : HomeDataResponse.fromJson(json['data'] as Map<String, dynamic>),
     )
-      ..status = json['status'] as int?
+      ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?;
 
 Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
@@ -159,4 +159,30 @@ Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
       'status': instance.status,
       'message': instance.message,
       'data': instance.data,
+    };
+
+StoreDetailsResponse _$StoreDetailsResponseFromJson(
+        Map<String, dynamic> json) =>
+    StoreDetailsResponse(
+      (json['id'] as num?)?.toInt(),
+      json['title'] as String?,
+      json['image'] as String?,
+      json['details'] as String?,
+      json['services'] as String?,
+      json['about'] as String?,
+    )
+      ..status = (json['status'] as num?)?.toInt()
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$StoreDetailsResponseToJson(
+        StoreDetailsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'id': instance.id,
+      'title': instance.title,
+      'image': instance.image,
+      'details': instance.details,
+      'services': instance.services,
+      'about': instance.about,
     };

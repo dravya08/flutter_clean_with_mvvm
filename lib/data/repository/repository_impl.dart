@@ -106,8 +106,10 @@ class RepositoryImpl extends Repository {
     try {
       // get from cache
       final response = await _localDataSource.getHome();
+      print('in if');
       return Right(response.toDomain());
     } catch (cacheError) {
+      print("cacheError");
       // we have cache error so we should call API
 
       if (await _networkInfo.isConnected) {
@@ -133,6 +135,33 @@ class RepositoryImpl extends Repository {
         }
       } else {
         // return connection error
+        return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, StoreDetails>> getStoreDetails() async {
+    try {
+      // get data from cache
+
+      final response = await _localDataSource.getStoreDetails();
+      return Right(response.toDomain());
+    } catch (cacheError) {
+      if (await _networkInfo.isConnected) {
+        try {
+          final response = await _remoteDataSource.getStoreDetails();
+          if (response.status == ApiInternalStatus.SUCCESS) {
+            _localDataSource.saveStoreDetailsToCache(response);
+            return Right(response.toDomain());
+          } else {
+            return Left(Failure(response.status ?? ResponseCode.DEFAULT,
+                response.message ?? ResponseMessage.DEFAULT));
+          }
+        } catch (error) {
+          return Left(ErrorHandler.handle(error).failure);
+        }
+      } else {
         return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
       }
     }
